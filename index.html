@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title> Mocha </title>
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/mocha/2.0.1/mocha.css" />
+</head>
+<body>
+ <div id="mocha"></div>
+ 
+ <script src="http://cdnjs.cloudflare.com/ajax/libs/mocha/2.0.1/mocha.js"></script>
+ <script src="http://cdnjs.cloudflare.com/ajax/libs/chai/1.10.0/chai.js"></script>
+ <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+ 
+ 
+ <script>
+ 
+ 	mocha.setup('bdd')
+ 	expect = chai.expect
+ 
+	describe("Suite de Teste", function(){
+		describe("Login de Usuario", function(){
+
+			it("Usuario", function(){
+				var usuario;
+				expect(usuario).to.equal('kalyanaamorim');
+			});
+
+			it("Cadastro de Senha", function(){
+				var senha;
+				expect(senha).to.equal(9052552);;
+			});
+
+			it("Confirmacao de Senha", function(){
+				var confirmacao;
+				expect(confirmacao)to.equal(9052552);
+			});
+
+			it("Nome de Usuario", function(){
+				var nome;
+				expect(nome).to.equal("Kalyana");
+			});
+
+			it("Sobrenome de Usuario", function(){
+				var s_nome;
+				expect(s_nome).to.equal("Luiz");
+			});
+
+			it("Email de Usuario", function(){
+				var email;
+				expect("kalyanakenia@gmail.com");
+			});
+
+		});
+
+	});
+
+	$.getJSON("http://demo.redmine.org/projects/bug/issues.json?callback=?", function(data) {
+ 		
+		var issues = data.issues;
+
+		for (i = 0; i < issues.length; i++) {
+
+			describe("Testes para a tarefa"+(i+1), function(){
+				it("Prioridade da tarefa"+(i+1), function(){
+					expect(issues[i].priority.name).to.equal("Normal");
+				});
+				
+				it("Tipo da tarefa"+(i+1), function(){
+					expect(issues[i].tipo.name).to.equal("Bug");
+				});
+				
+				it(" Situação da tarefa"+(i+1), function(){
+					expect(issues[i].situacao.name).to.equal("New");
+				});			
+				
+			})
+
+		}
+	});
+	mocha.run();
+	</script>
+ 
+	</head>
+	<body>
+	</body>
+	</html>
